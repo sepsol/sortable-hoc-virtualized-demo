@@ -11,18 +11,25 @@ The props items and value come from
 the custom component's state and are passed all the way through to 
 the innermost sortableElement. */
 const SortableItem = sortableElement(
-  ({value}) => 
+  ({ checkbox, agendaItem, agendaStatus }) => 
   <tr>
-    {value}
+    <td>{checkbox}</td>
+    <td>{agendaItem}</td>
+    <td>{agendaStatus}</td>
   </tr>
 );
 
 class VirtualList extends Component {
   renderRow = ({index}) => {
     const {items} = this.props;
-    const {value} = items[index];
+    const {checkbox, agendaItem, agendaStatus} = items[index];
 
-    return <SortableItem index={index} value={value} />;
+    return <SortableItem 
+      index={index} 
+      checkbox={checkbox}
+      agendaItem={agendaItem}
+      agendaStatus={agendaStatus} 
+    />;
   };
   //The height of the rows in this example are setup in ReactVirtualizedExample's state. 
 
@@ -40,8 +47,8 @@ class VirtualList extends Component {
         rowHeight={this.getRowHeight}
         rowRenderer={this.renderRow}
         rowCount={items.length}
-        width={400}
-        height={600}
+        width={1000}
+        height={700}
       />
     );
   }
@@ -56,12 +63,12 @@ const QuickMaths = 7+7;
 export default class ReactVirtualizedExample extends Component {
   state = {
     items: [
-      {value: 'Item 1', height: 89},
-      {value: 'Item 2', height: 59},
-      {value: 'Item 3', height: 130},
-      {value: 'Item 4', height: 59},
-      {value: 'Item 5', height: 200},
-      {value: 'Item 6', height: 150},
+      {checkbox: 'false', agendaItem: 'Quick', agendaStatus: 'In Progress', height: 89},
+      {checkbox: 'true', agendaItem: 'brown', agendaStatus: 'Deferred', height: 89},
+      {checkbox: 'false', agendaItem: 'fox', agendaStatus: 'Closed', height: 89},
+      {checkbox: 'false', agendaItem: 'jumps', agendaStatus: 'Completed', height: 89},
+      {checkbox: 'true', agendaItem: 'over', agendaStatus: 'Completed', height: 89},
+      {checkbox: 'false', agendaItem: 'the lazy dog', agendaStatus: 'Yes', height: 89},
     ],
   };
 
@@ -93,12 +100,18 @@ export default class ReactVirtualizedExample extends Component {
 
     return (
       <>
-      
-      <SortableVirtualList
-        getRef={this.registerListRef}
-        items={items}
-        onSortEnd={this.onSortEnd}
-      />
+      <table>
+        <th>
+          <td>Checkbox</td><td>Agenda Item</td><td>Agenda Status</td>
+        </th>
+        <tbody>
+          <SortableVirtualList
+            getRef={this.registerListRef}
+            items={items}
+            onSortEnd={this.onSortEnd}
+            />
+        </tbody>
+        </table>
       </>
     );
   }
