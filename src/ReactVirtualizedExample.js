@@ -100,18 +100,22 @@ export default class ReactVirtualizedExample extends Component {
 
     return (
       <>
-      <table>
-        <th>
-          <td>Checkbox</td><td>Agenda Item</td><td>Agenda Status</td>
-        </th>
-        <tbody>
+      
           <SortableVirtualList
             getRef={this.registerListRef}
             items={items}
             onSortEnd={this.onSortEnd}
+            getContainer={(wrappedInstance) => 
+              (<table>
+                <th>
+                  <td>Checkbox</td><td>Agenda Item</td><td>Agenda Status</td>
+                </th>
+                <tbody>
+                  {wrappedInstance}
+                </tbody>
+              </table>)
+            }
             />
-        </tbody>
-        </table>
       </>
     );
   }
