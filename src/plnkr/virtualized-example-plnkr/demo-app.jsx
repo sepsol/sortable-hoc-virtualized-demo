@@ -1,9 +1,15 @@
 // Read deps from UMD exports
-const { Component } = React
-const { findDOMNode } = ReactDOM
-const Draggable = ReactDraggable
-const { AutoSizer, defaultTableHeaderRenderer, defaultTableRowRenderer, Column, Table } = ReactVirtualized
-const { SortableContainer, SortableElement, SortableHandle } = SortableHOC
+import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+import Draggable from 'react-draggable';
+import { AutoSizer, defaultTableHeaderRenderer, defaultTableRowRenderer, Column, Table } from 'react-virtualized';
+import  { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import list from './create-list.js'
+// const { Component } = React
+// const { findDOMNode } = ReactDOM
+// const Draggable = ReactDraggable
+// const { AutoSizer, defaultTableHeaderRenderer, defaultTableRowRenderer, Column, Table } = ReactVirtualized
+// const { SortableContainer, SortableElement, SortableHandle } = SortableHOC
 
 // Connect react-virtualized and react-sortable-hoc
 const SortableTable = SortableContainer(Table, {
@@ -161,3 +167,5 @@ class DemoApp extends Component {
     this.forceUpdate() // Re-render
   }
 }
+
+export default DemoApp;

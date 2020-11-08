@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {sortableContainer, sortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import {List} from 'react-virtualized';
+import { findDOMNode } from 'react-dom';
 /* 3 layers of nesting here -
 a React-Sortable-HOC sortableElement component inside of 
 a React Virtualized <List> component inside of 
@@ -48,7 +49,7 @@ class VirtualList extends Component {
         rowRenderer={this.renderRow}
         rowCount={items.length}
         width={1000}
-        height={700}
+        height={400}
       />
     );
   }
@@ -105,16 +106,17 @@ export default class ReactVirtualizedExample extends Component {
             getRef={this.registerListRef}
             items={items}
             onSortEnd={this.onSortEnd}
-            getContainer={(wrappedInstance) => 
-              (<table>
-                <th>
-                  <td>Checkbox</td><td>Agenda Item</td><td>Agenda Status</td>
-                </th>
-                <tbody>
-                  {wrappedInstance}
-                </tbody>
-              </table>)
-            }
+            // getContainer={wrappedInstance => findDOMNode(wrappedInstance.Grid)}
+            // getContainer={(wrappedInstance) => 
+            //   (<table>
+            //     <th>
+            //       <td>Checkbox</td><td>Agenda Item</td><td>Agenda Status</td>
+            //     </th>
+            //     <tbody>
+            //       {wrappedInstance}
+            //     </tbody>
+            //   </table>)
+            // }
             />
       </>
     );
