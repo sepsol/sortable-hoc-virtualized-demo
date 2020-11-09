@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import DemoApp from './plnkr/virtualized-example-plnkr/demo-app';
 import SortableTable from './SortableTable';
+import ReactVirtualizedCheckbox from './ReactVirtualizedCheckbox';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -12,6 +14,7 @@ ReactDOM.render(
     <App />
     {/* <DemoApp/> */}
     <SortableTable/>
+    <ReactVirtualizedCheckbox/>
   </React.StrictMode>,
   document.getElementById('root')
 );

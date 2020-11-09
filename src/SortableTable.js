@@ -51,8 +51,8 @@ class SortableCustomizedTable extends Component {
     this.setState({
       items: arrayMove(items, oldIndex, newIndex)
     });
-    this.Table.recomputeRowHeight();
-    this.Table.forceUpdate();
+    // this.Table.recomputeRowHeight();
+    // this.Table.forceUpdate();
   }
 
   render() {
