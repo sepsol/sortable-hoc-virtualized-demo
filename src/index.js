@@ -6,15 +6,17 @@ import App from './App';
 import DemoApp from './plnkr/virtualized-example-plnkr/demo-app';
 import SortableTable from './SortableTable';
 import ReactVirtualizedCheckbox from './ReactVirtualizedCheckbox';
+import CustomSortableTable from './CustomSortableTable';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     {/* <DemoApp/> */}
-    <SortableTable/>
-    <ReactVirtualizedCheckbox/>
+    {/* <SortableTable/> */}
+    {/* <ReactVirtualizedCheckbox/> */}
+    <CustomSortableTable/>
   </React.StrictMode>,
   document.getElementById('root')
 );
