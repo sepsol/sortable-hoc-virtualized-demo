@@ -4,13 +4,18 @@ import './index.css';
 
 import App from './App';
 import SortableTable from './SortableTable';
+import ReactVirtualizedCheckbox from './ReactVirtualizedCheckbox';
+import CustomSortableTable from './CustomSortableTable';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     {/* <DemoApp/> */}
-    <SortableTable/>
+    {/* <SortableTable/> */}
+    {/* <ReactVirtualizedCheckbox/> */}
+    <CustomSortableTable/>
   </React.StrictMode>,
   document.getElementById('root')
 );
