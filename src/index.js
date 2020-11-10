@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import App from './App';
-import DemoApp from './plnkr/virtualized-example-plnkr/demo-app';
 import SortableTable from './SortableTable';
 import reportWebVitals from './reportWebVitals';
 
