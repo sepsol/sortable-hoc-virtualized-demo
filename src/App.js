@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 // import TableWithSortableRows from './TableWithSortableRows';
 import ReactVirtualizedExample from './ReactVirtualizedExample';
-import {List} from 'react-virtualized';
-
+import CustomSortableTable from './CustomSortableTable';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +9,8 @@ class App extends Component {
     const {items, getRef} = this.props;
     return(
       <>
-        <ReactVirtualizedExample />
+        {/* <ReactVirtualizedExample /> */}
+        <CustomSortableTable/>
       </>
     )
   }

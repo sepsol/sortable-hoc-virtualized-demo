@@ -20,6 +20,7 @@ function CustomizedTable(props) {
       headerHeight={20}
       rowHeight={30}
       rowCount={props.items.length}
+      handleCheckboxClick={props.handleCheckboxClick}
       {...props} 
     >
       <Column 
@@ -30,13 +31,15 @@ function CustomizedTable(props) {
           // something
           return <input type="checkbox"/>
         }}
+        handleCheckboxClick={props.handleCheckboxClick}
         cellRenderer={({cellData}) => {
-          return <input type="checkbox" checked={cellData}/>
+          <input type="checkbox" checked={cellData}/>
         }}
       />
       <Column 
         label="Agenda Item" 
-        dataKey="agendaItem" 
+        dataKey="agendaItem"
+        cellRenderer={({cellData, rowIndex})=>`${cellData} at row ${rowIndex}`}
         width={300} 
       />
       <Column
@@ -69,7 +72,6 @@ class SortableCustomizedTable extends Component {
       {checkbox: false, agendaItem: 'the lazy dog', agendaStatus: 'deferred', height: 89},
     ]
   }
-
   registerTableRef = tableInstance => {
     this.Table = tableInstance;
   }
@@ -91,6 +93,7 @@ class SortableCustomizedTable extends Component {
         items={items}
         getRef={this.registerTableRef}
         onSortEnd={this.onSortEnd}
+        handleCheckboxClick={this.handleCheckboxClick}
       />
     );
   }
