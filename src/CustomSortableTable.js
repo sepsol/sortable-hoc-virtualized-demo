@@ -20,6 +20,7 @@ function CustomizedTable(props) {
       headerHeight={20}
       rowHeight={30}
       rowCount={props.items.length}
+      handleCheckboxClick={props.handleCheckboxClick}
       {...props} 
     >
       <Column 
@@ -30,28 +31,30 @@ function CustomizedTable(props) {
           // something
           return <input type="checkbox"/>
         }}
-        cellRenderer={() => {
-          // something
-          return <input type="checkbox"/>
+        handleCheckboxClick={props.handleCheckboxClick}
+        cellRenderer={({cellData}) => {
+          <input type="checkbox" checked={cellData}/>
         }}
       />
       <Column 
         label="Agenda Item" 
-        dataKey="agendaItem" 
+        dataKey="agendaItem"
+        cellRenderer={({cellData, rowIndex})=>`${cellData} at row ${rowIndex}`}
         width={300} 
       />
       <Column
         label="Status"
         dataKey="agendaStatus"
         width={200}
-        cellRenderer={() => {
-          // something
-          return <select>
-            <option>In Progress</option>
-            <option>Deferred</option>
-            <option>Closed</option>
-            <option>Completed</option>
-          </select>
+        cellRenderer={({cellData}) => {
+          return (
+            <select value={cellData}>
+              <option value="In Progress">In Progress</option>
+              <option value="Deferred">Deferred</option>
+              <option value="Completed">Completed</option>
+              <option value="Closed">Closed</option>
+            </select>
+          )
         }}
       />
     </SortableTable>
@@ -61,15 +64,14 @@ function CustomizedTable(props) {
 class SortableCustomizedTable extends Component {
   state = {
     items: [
-      {checkbox: false, agendaItem: 'Quick', agendaStatus: 'In Progress', height: 89},
+      {checkbox: true, agendaItem: 'Quick', agendaStatus: 'In Progress', height: 89},
       {checkbox: true, agendaItem: 'brown', agendaStatus: 'Deferred', height: 89},
       {checkbox: false, agendaItem: 'fox', agendaStatus: 'Closed', height: 89},
       {checkbox: false, agendaItem: 'jumps', agendaStatus: 'Completed', height: 89},
       {checkbox: true, agendaItem: 'over', agendaStatus: 'Completed', height: 89},
-      {checkbox: false, agendaItem: 'the lazy dog', agendaStatus: 'Yes', height: 89},
+      {checkbox: false, agendaItem: 'the lazy dog', agendaStatus: 'Deferred', height: 89},
     ]
   }
-
   registerTableRef = tableInstance => {
     this.Table = tableInstance;
   }
@@ -91,6 +93,7 @@ class SortableCustomizedTable extends Component {
         items={items}
         getRef={this.registerTableRef}
         onSortEnd={this.onSortEnd}
+        handleCheckboxClick={this.handleCheckboxClick}
       />
     );
   }

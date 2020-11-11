@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import App from './App';
-import SortableTable from './SortableTable';
-import ReactVirtualizedCheckbox from './ReactVirtualizedCheckbox';
-import CustomSortableTable from './CustomSortableTable';
+
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    {/* <DemoApp/> */}
-    {/* <SortableTable/> */}
-    {/* <ReactVirtualizedCheckbox/> */}
-    <CustomSortableTable/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
