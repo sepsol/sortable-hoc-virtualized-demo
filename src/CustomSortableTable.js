@@ -30,9 +30,8 @@ function CustomizedTable(props) {
           // something
           return <input type="checkbox"/>
         }}
-        cellRenderer={() => {
-          // something
-          return <input type="checkbox"/>
+        cellRenderer={({cellData}) => {
+          return <input type="checkbox" checked={cellData}/>
         }}
       />
       <Column 
@@ -44,14 +43,15 @@ function CustomizedTable(props) {
         label="Status"
         dataKey="agendaStatus"
         width={200}
-        cellRenderer={() => {
-          // something
-          return <select>
-            <option>In Progress</option>
-            <option>Deferred</option>
-            <option>Closed</option>
-            <option>Completed</option>
-          </select>
+        cellRenderer={({cellData}) => {
+          return(
+            <select value={cellData}>
+              <option value="in-progress">In Progress</option>
+              <option value="deferred">Deferred</option>
+              <option value="closed">Closed</option>
+              <option value="completed">Completed</option>
+            </select>
+          )
         }}
       />
     </SortableTable>
@@ -61,12 +61,12 @@ function CustomizedTable(props) {
 class SortableCustomizedTable extends Component {
   state = {
     items: [
-      {checkbox: false, agendaItem: 'Quick', agendaStatus: 'In Progress', height: 89},
-      {checkbox: true, agendaItem: 'brown', agendaStatus: 'Deferred', height: 89},
-      {checkbox: false, agendaItem: 'fox', agendaStatus: 'Closed', height: 89},
-      {checkbox: false, agendaItem: 'jumps', agendaStatus: 'Completed', height: 89},
-      {checkbox: true, agendaItem: 'over', agendaStatus: 'Completed', height: 89},
-      {checkbox: false, agendaItem: 'the lazy dog', agendaStatus: 'Yes', height: 89},
+      {checkbox: false, agendaItem: 'Quick', agendaStatus: 'in-progress', height: 89},
+      {checkbox: true, agendaItem: 'brown', agendaStatus: 'deferred', height: 89},
+      {checkbox: false, agendaItem: 'fox', agendaStatus: 'closed', height: 89},
+      {checkbox: false, agendaItem: 'jumps', agendaStatus: 'completed', height: 89},
+      {checkbox: true, agendaItem: 'over', agendaStatus: 'completed', height: 89},
+      {checkbox: false, agendaItem: 'the lazy dog', agendaStatus: 'deferred', height: 89},
     ]
   }
 
